@@ -1,0 +1,40 @@
+<ng-template [ngIf]="!isLoaded">
+    <mat-spinner class="spinner"></mat-spinner>
+</ng-template>
+<ng-template [ngIf]="isLoaded">
+    <h1>Open new ticket</h1>
+    <form [formGroup]="ticketForm" #form="ngForm" (ngSubmit)="ticketForm.valid && onSubmit(ticketForm.value)" >
+        <mat-form-field class="full-width">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Title" formControlName="title"/>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="example@example.com" formControlName="email"/>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Desctibe problem here" formControlName="description" rows="4"></textarea>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Priority</mat-label>
+            <mat-select formControlName="priority">
+                <mat-option *ngFor="let item of priorities | enumToArray" value="{{item.name}}">
+                    {{item.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+                <mat-option *ngFor="let item of statuses | enumToArray" value="{{item.name}}">
+                    {{item.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary">Save</button>
+    </form>
+</ng-template>
+
+
+
