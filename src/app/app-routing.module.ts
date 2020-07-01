@@ -4,7 +4,8 @@ import { TicketsComponent } from './tickets/tickets.component';
 
 
 const routes: Routes = [
-  {path: 'tickets', component: TicketsComponent},
+  {path: '**', redirectTo: '/tickets', pathMatch: 'full' },
+  {path: 'tickets', component: TicketsComponent}
 ];
 
 @NgModule({
